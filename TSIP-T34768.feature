@@ -20,8 +20,8 @@ Feature: BPAY Repayment|Consumer Interest Free Loans - LPT - BPAY Payment
         1) Ticket: https://racvone.atlassian.net/browse/TSIP-40573
 
     Given Create A New Loan Using API V2
-      | Test Case Name      | TSIP-T34768                |
-      | Loan Test Data Name | Consumer_Secured_Monthly |
+      | Test Case Name      | TSIP-T34768                   |
+      | Loan Test Data Name | Consumer_InterestFree_Monthly |
     And Open browser
     When Navigate to Salesforce Login Page
     And Log in as Administrator
@@ -64,3 +64,4 @@ Feature: BPAY Repayment|Consumer Interest Free Loans - LPT - BPAY Payment
     Examples:
       | User                    |
       | Lending Support Officer |
+
