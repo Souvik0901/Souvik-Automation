@@ -17,7 +17,7 @@ Feature: Interest Posting | Commercial Secured Loans - IPT - Interest Capitalisa
         Test Cases Involved:
         1) TSIP-T34971: Interest Posting | Commercial Secured Loans - IPT - Interest Capitalisation Reversal
         Jira:
-        1) Ticket:
+        1) Ticket: https://racvone.atlassian.net/browse/TSIP-40847
 
     Given Create A New Loan Using API V2
       | Test Case Name      | TSIP-T34971                |
@@ -41,7 +41,7 @@ Feature: Interest Posting | Commercial Secured Loans - IPT - Interest Capitalisa
     And Open CL Loan View
     And Go to "Interest Posting" under "Transactions" tab
     And Open Interst Posting Transaction with index 1
-    And Open Accounting Entries For Interest Posting Transaction
+    And Open Accounting Entries For Interest Posting Transaction with index 1
     Then validate the details of Accounting Entries
       | Field                 | Expected Value          |
       | Event Description     | Interest Capitalisation |
@@ -52,7 +52,15 @@ Feature: Interest Posting | Commercial Secured Loans - IPT - Interest Capitalisa
       | Product Code (Credit) |                   10502 |
       | Product Code (Debit)  |                   10502 |
 
+    And From App Launcher Open "Loan Servicing"
+    When I fetch all Processing DAG records
+    And I update all DAG records to Success
     And Move Current System Date to "02/01/2025" for ERPSandbox
+    And Close browser
+    And Open browser
+    And Navigate to Salesforce Login Page
+    When Log in as Administrator
+    And From App Launcher Open "RACVF Service Console"
     And Fetch the mapping header id for 'Commercial Secured Loans - IPT - Interest Capitalisation Reversal'
     And Save Mapping Header Id
     And Open Developer Console
@@ -61,7 +69,7 @@ Feature: Interest Posting | Commercial Secured Loans - IPT - Interest Capitalisa
     And Open CL Loan View
     And Go to "Interest Posting" under "Transactions" tab
     And Open Interst Posting Transaction with index 1
-    And Open Accounting Entries For Interest Posting Transaction
+    And Open Accounting Entries For Interest Posting Transaction with index 1
     Then validate the details of Accounting Entries  
       | Field                 | Expected Value                      |
       | Event Description     | Reversal of Interest Capitalisation |
